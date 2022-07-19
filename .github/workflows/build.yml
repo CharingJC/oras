@@ -34,8 +34,7 @@ jobs:
           name: oras-coverage-report-${{ github.sha }}
           path: .cover/
         if: always()
+      - name: Run tests
+        run: go test \cmd\oras -race -v -coverprofile=coverage.txt .
       - name: Upload coverage to codecov.io
         uses: codecov/codecov-action@v3
-        with:
-          directory: .cover/
-          verbose: true
