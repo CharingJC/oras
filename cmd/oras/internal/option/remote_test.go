@@ -60,13 +60,13 @@ func TestMain(m *testing.M) {
 	m.Run()
 }
 
-// func TestRemote_FlagsInit(t *testing.T) {
-// 	var test struct {
-// 		Remote
-// 	}
+func TestRemote_FlagsInit(t *testing.T) {
+	var test struct {
+		Remote
+	}
 
-// 	ApplyFlags(&test, pflag.NewFlagSet("oras-test", pflag.ExitOnError))
-// }
+	ApplyFlags(&test, pflag.NewFlagSet("oras-test", pflag.ExitOnError))
+}
 
 func TestRemote_authClient_RawCredential(t *testing.T) {
 	password := make([]byte, 12)
