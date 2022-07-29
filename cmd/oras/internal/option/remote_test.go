@@ -44,21 +44,21 @@ var testTagList = struct {
 	Tags: []string{"tag"},
 }
 
-// func TestMain(m *testing.M) {
-// 	// Test server
-// 	ts = httptest.NewTLSServer(nhttp.HandlerFunc(func(w nhttp.ResponseWriter, r *nhttp.Request) {
-// 		p := r.URL.Path
-// 		m := r.Method
-// 		switch {
-// 		case p == "/v2/" && m == "GET":
-// 			w.WriteHeader(nhttp.StatusOK)
-// 		case p == fmt.Sprintf("/v2/%s/tags/list", testRepo) && m == "GET":
-// 			json.NewEncoder(w).Encode(testTagList)
-// 		}
-// 	}))
-// 	defer ts.Close()
-// 	m.Run()
-// }
+func TestMain(m *testing.M) {
+	// Test server and more
+	ts = httptest.NewTLSServer(nhttp.HandlerFunc(func(w nhttp.ResponseWriter, r *nhttp.Request) {
+		p := r.URL.Path
+		m := r.Method
+		switch {
+		case p == "/v2/" && m == "GET":
+			w.WriteHeader(nhttp.StatusOK)
+		case p == fmt.Sprintf("/v2/%s/tags/list", testRepo) && m == "GET":
+			json.NewEncoder(w).Encode(testTagList)
+		}
+	}))
+	defer ts.Close()
+	m.Run()
+}
 
 func TestRemote_FlagsInit(t *testing.T) {
 	var test struct {
